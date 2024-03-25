@@ -49,10 +49,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: GestureDetector(
                         onTap: () async {
                           FilePickerResult? result;
+
                           try {
-                            result = await FilePicker.platform.pickFiles(
-                              type: FileType.image,
-                            );
+                            result = await FilePicker.platform
+                                .pickFiles(type: FileType.image);
                           } catch (e) {
                             e.printError();
                           }

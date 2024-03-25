@@ -1,4 +1,4 @@
-package br.com.vitor.final_project
+package br.com.vitor.social_network
 
 import io.flutter.embedding.android.FlutterActivity
 

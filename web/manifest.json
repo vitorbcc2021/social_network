@@ -1,6 +1,6 @@
 {
-    "name": "final_project",
-    "short_name": "final_project",
+    "name": "social_network",
+    "short_name": "social_network",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

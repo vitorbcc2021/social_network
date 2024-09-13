@@ -1,7 +1,7 @@
-# Especifica que apenas arquivos Dart devem ser contados para a análise de linguagens
-*.dart linguist-language=Dart
+# Define Dart como a única linguagem detectada
+* linguist-language=Dart
 
-# Ignora outros arquivos, para que não sejam contados na análise de linguagens
+# Especifica que arquivos que não são Dart não devem ser contados
 *.yaml linguist-detectable=false
 *.json linguist-detectable=false
 *.png linguist-detectable=false
@@ -9,9 +9,6 @@
 *.jpeg linguist-detectable=false
 *.gif linguist-detectable=false
 *.svg linguist-detectable=false
-*.dart linguist-language=Dart
-
-# Você pode adicionar mais extensões de arquivos que não quer que sejam contadas aqui
 *.lock linguist-detectable=false
 *.md linguist-detectable=false
 *.xml linguist-detectable=false
@@ -32,5 +29,3 @@
 *.rs linguist-detectable=false
 *.java linguist-detectable=false
 *.kt linguist-detectable=false
-
-# Adicione outros padrões conforme necessário para seu projeto

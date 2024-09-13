@@ -1,21 +1,36 @@
-# Ignorar arquivos de linguagens que não são Dart
-* linguagens=none
+# Especifica que apenas arquivos Dart devem ser contados para a análise de linguagens
+*.dart linguist-language=Dart
 
-# Configura o Git para rastrear apenas arquivos Dart
-*.dart linguagens=dart
+# Ignora outros arquivos, para que não sejam contados na análise de linguagens
+*.yaml linguist-detectable=false
+*.json linguist-detectable=false
+*.png linguist-detectable=false
+*.jpg linguist-detectable=false
+*.jpeg linguist-detectable=false
+*.gif linguist-detectable=false
+*.svg linguist-detectable=false
+*.dart linguist-language=Dart
 
-# Especificar extensões de arquivos para Dart
-*.dart linguagens=dart
-*.yaml linguagens=dart
+# Você pode adicionar mais extensões de arquivos que não quer que sejam contadas aqui
+*.lock linguist-detectable=false
+*.md linguist-detectable=false
+*.xml linguist-detectable=false
+*.gradle linguist-detectable=false
+*.iml linguist-detectable=false
+*.dylib linguist-detectable=false
+*.so linguist-detectable=false
+*.a linguist-detectable=false
+*.class linguist-detectable=false
+*.sh linguist-detectable=false
+*.bat linguist-detectable=false
+*.c linguist-detectable=false
+*.cpp linguist-detectable=false
+*.h linguist-detectable=false
+*.m linguist-detectable=false
+*.mm linguist-detectable=false
+*.py linguist-detectable=false
+*.rs linguist-detectable=false
+*.java linguist-detectable=false
+*.kt linguist-detectable=false
 
-# Ignorar arquivos e diretórios específicos
-.gradle linguagens=none
-build/ linguagens=none
-.idea/ linguagens=none
-.vscode/ linguagens=none
-*.iml linguagens=none
-*.lock linguagens=none
-
-# Configurações para outros arquivos temporários ou específicos do ambiente
-*.log linguagens=none
-*.tmp linguagens=none
+# Adicione outros padrões conforme necessário para seu projeto

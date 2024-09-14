@@ -1,0 +1,31 @@
+# Define Dart como a única linguagem detectada
+* linguist-language=Dart
+
+# Especifica que arquivos que não são Dart não devem ser contados
+*.yaml linguist-detectable=false
+*.json linguist-detectable=false
+*.png linguist-detectable=false
+*.jpg linguist-detectable=false
+*.jpeg linguist-detectable=false
+*.gif linguist-detectable=false
+*.svg linguist-detectable=false
+*.lock linguist-detectable=false
+*.md linguist-detectable=false
+*.xml linguist-detectable=false
+*.gradle linguist-detectable=false
+*.iml linguist-detectable=false
+*.dylib linguist-detectable=false
+*.so linguist-detectable=false
+*.a linguist-detectable=false
+*.class linguist-detectable=false
+*.sh linguist-detectable=false
+*.bat linguist-detectable=false
+*.c linguist-detectable=false
+*.cpp linguist-detectable=false
+*.h linguist-detectable=false
+*.m linguist-detectable=false
+*.mm linguist-detectable=false
+*.py linguist-detectable=false
+*.rs linguist-detectable=false
+*.java linguist-detectable=false
+*.kt linguist-detectable=false

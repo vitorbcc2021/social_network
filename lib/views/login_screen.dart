@@ -1,10 +1,10 @@
-import 'package:social_network/home_page.dart';
-import 'package:social_network/registration_screen.dart';
+import 'package:social_network/views/home_page.dart';
+import 'package:social_network/views/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'controllers/user_controller.dart';
-import 'models/user.dart';
+import '../controllers/user_controller.dart';
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});

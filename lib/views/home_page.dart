@@ -1,14 +1,14 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:social_network/profile_screen.dart';
+import 'package:social_network/views/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:get/get.dart';
-import 'controllers/post_controller.dart';
-import 'controllers/user_controller.dart';
-import 'models/user.dart';
-import 'models/post.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
+import '../models/user.dart';
+import '../models/post.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.currentUser});

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'home_page.dart';
-import 'models/user.dart';
+import '../models/user.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});

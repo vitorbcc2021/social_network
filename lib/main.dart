@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:social_network/home_page.dart';
-import 'package:social_network/login_screen.dart';
+import 'package:social_network/views/home_page.dart';
+import 'package:social_network/views/login_screen.dart';
 import 'package:social_network/controllers/post_controller.dart';
-import 'package:social_network/profile_screen.dart';
-import 'package:social_network/registration_screen.dart';
+import 'package:social_network/views/profile_screen.dart';
+import 'package:social_network/views/registration_screen.dart';
 import 'package:social_network/repositories/post_repository.dart';
 import 'package:social_network/repositories/user_repository.dart';
 import 'package:flutter/material.dart';

@@ -7,12 +7,12 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/route_manager.dart';
 
-import 'controllers/post_controller.dart';
-import 'controllers/user_controller.dart';
+import '../controllers/post_controller.dart';
+import '../controllers/user_controller.dart';
 import 'home_page.dart';
 import 'login_screen.dart';
-import 'models/post.dart';
-import 'models/user.dart';
+import '../models/post.dart';
+import '../models/user.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen(

@@ -29,3 +29,4 @@
 *.rs linguist-detectable=false
 *.java linguist-detectable=false
 *.kt linguist-detectable=false
+*.cc linguist-detectable=false

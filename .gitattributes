@@ -1,3 +1,7 @@
+# Define Dart como a única linguagem detectada
+* linguist-language=Dart
+
+
 # Especifica que arquivos que não são Dart não devem ser contados
 *.yaml linguist-detectable=false
 *.json linguist-detectable=false

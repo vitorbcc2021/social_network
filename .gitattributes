@@ -1,3 +1,6 @@
+# Define que apenas arquivos .dart são detectáveis e contados
+*.dart linguist-language=Dart
+
 # Especifica que arquivos que não são Dart não devem ser contados
 *.yaml linguist-detectable=false
 *.json linguist-detectable=false

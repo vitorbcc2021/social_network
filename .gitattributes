@@ -1,4 +1,4 @@
-# Define que apenas arquivos .dart são detectáveis e contados
+# Define dart como a unica linguagem detectavel
 *.dart linguist-language=Dart
 
 # Especifica que arquivos que não são Dart não devem ser contados

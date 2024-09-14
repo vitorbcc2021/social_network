@@ -1,0 +1,42 @@
+# Flutter/Dart 
+**/build/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/android/key.properties
+
+# iOS specific
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/App.framework
+ios/Flutter/engine/
+ios/ServiceDefinitions.json
+
+# Android specific
+.android/
+appcenter-post-clone.sh
+
+# VS Code/ IntelliJ IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# Flutter specific files
+.cocoon/
+.macos/
+test/
+
+# Other files
+*.log
+*.tmp
+*.DS_Store
+*.swp

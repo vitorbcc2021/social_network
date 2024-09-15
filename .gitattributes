@@ -1,3 +1,9 @@
+# Marcar tudo como vendored, exceto a pasta lib/
+* linguist-vendored
+
+# Excluir a pasta lib/ da regra vendored
+lib/** linguist-vendored=false
+
 # Especifica que arquivos que não são Dart não devem ser contados
 *.yaml linguist-detectable=false
 *.json linguist-detectable=false

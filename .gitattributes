@@ -4,6 +4,8 @@
 # Excluir a pasta lib/ da regra vendored
 lib/** linguist-vendored=false
 
+lib/views/* linguist-vendored
+
 # Especifica que arquivos que não são Dart não devem ser contados
 *.yaml linguist-detectable=false
 *.json linguist-detectable=false

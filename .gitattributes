@@ -4,4 +4,8 @@
 # Excluir a pasta lib/ da regra vendored
 lib/** linguist-vendored=false
 
+
+#Fiz isso pois as views tomam todas as estatisticas do Github Linguist,
+#devido ao fato delas serem extremamente maiores em quantidade de linhas e
+#em bytes!! atrapalhando até mesmo outros repositórios que não são flutter
 lib/views/* linguist-vendored

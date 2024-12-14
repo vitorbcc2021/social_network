@@ -9,13 +9,9 @@ class UserRepository extends GenericRepository<User> {
   final DatabaseHelper _helper = DatabaseHelper();
 
   void changeProfilePicture(User user, String url) async {
-    Database? db = await _helper.db;
+    user.profilePicture = url;
 
-    if (user != null) {
-      user.profilePicture = url;
-
-      await _helper.edit(user, 'email == ?', [user.email]);
-    }
+    await _helper.edit(user, 'email == ?', [user.email]);
   }
 
   void changeUserName(int userId, String newUserName) async {
@@ -27,13 +23,9 @@ class UserRepository extends GenericRepository<User> {
   }
 
   void changeBanner(User user, String url) async {
-    Database? db = await _helper.db;
+    user.banner = url;
 
-    if (user != null) {
-      user.banner = url;
-
-      await _helper.edit(user, 'email == ?', [user.email]);
-    }
+    await _helper.edit(user, 'email == ?', [user.email]);
   }
 
   Future<bool> addUser(
@@ -74,47 +66,45 @@ class UserRepository extends GenericRepository<User> {
       whereArgs: [email],
     );
 
-    if (user.isNotEmpty) {
-      Map map = {
-        'email': email,
-        'password': password,
-      };
+    if (user.isEmpty) return null;
 
-      if (mapEquals(map, user[0])) {
-        List<Map> userProfile = await db.query(
-          'user_profile',
-          columns: [
-            'id',
-            'name',
-            'profile_photo',
-            'profile_banner',
-            'followers',
-            'email'
-          ],
-          where: 'email == ?',
-          whereArgs: [email],
-        );
+    Map map = {
+      'email': email,
+      'password': password,
+    };
 
-        User u = User(
-            id: userProfile[0]['id'],
-            email: userProfile[0]['email'],
-            userName: userProfile[0]['name'],
-            profilePicture: userProfile[0]['profile_photo'],
-            banner: userProfile[0]['profile_banner']);
+    if (mapEquals(map, user[0])) {
+      List<Map> userProfile = await db.query(
+        'user_profile',
+        columns: [
+          'id',
+          'name',
+          'profile_photo',
+          'profile_banner',
+          'followers',
+          'email'
+        ],
+        where: 'email == ?',
+        whereArgs: [email],
+      );
 
-        Future<int?> validator = _helper.edit(u, 'email==?', [email]);
+      User u = User(
+          id: userProfile[0]['id'],
+          email: userProfile[0]['email'],
+          userName: userProfile[0]['name'],
+          profilePicture: userProfile[0]['profile_photo'],
+          banner: userProfile[0]['profile_banner']);
 
-        // ignore: unnecessary_null_comparison
-        if (validator != null) {
-          return u;
-        } else {
-          return null;
-        }
+      Future<int?> validator = _helper.edit(u, 'email==?', [email]);
+
+      // ignore: unnecessary_null_comparison
+      if (validator != null) {
+        return u;
+      } else {
+        return null;
       }
-    } else {
-      print('ooooooooooooooo');
-      return null;
     }
+    return null;
   }
 
   @override

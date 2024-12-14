@@ -1,5 +1,3 @@
-import 'package:get/get.dart';
-
 import 'generic_model.dart';
 
 class User extends GenericModel {

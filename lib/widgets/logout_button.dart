@@ -27,11 +27,7 @@ class LogoutButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 3),
           onPressed: () {
             if (controller.logout(currentUser)) {
-              Get.offUntil(
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
-                  ),
-                  (route) => route.currentResult == LoginScreen());
+              Get.offAll(() => LoginScreen());
             }
           },
           icon: const Icon(

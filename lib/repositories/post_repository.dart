@@ -30,8 +30,6 @@ class PostRepository extends GenericRepository<Post> {
   }
 
   void addPost(Post post) async {
-    final Database? db = await _helper.db;
-
     Post? p = await _helper.save(post);
     add(p!);
   }

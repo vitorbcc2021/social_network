@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
 import '../models/post.dart';
 import '../models/user.dart';
 import '../views/profile_screen.dart';
@@ -66,8 +65,6 @@ class PostViewer extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () async {
-                  UserController uc = Get.find<UserController>();
-
                   List<Map>? maps = [];
                   List<Post> posts = [];
 

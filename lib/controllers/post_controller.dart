@@ -1,8 +1,6 @@
 import 'package:social_network/repositories/post_repository.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../models/post.dart';
-import '../models/user.dart';
 
 class PostController extends GetxController {
   late PostRepository _repository;

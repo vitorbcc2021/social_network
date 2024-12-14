@@ -1,6 +1,5 @@
 import 'package:social_network/models/generic_model.dart';
 import 'package:social_network/repositories/i_generic_repository.dart';
-import 'package:flutter/material.dart';
 
 class GenericRepository<T extends GenericModel> with IGenericRepository<T> {
   List<T> models = [];

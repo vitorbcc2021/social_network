@@ -1,12 +1,7 @@
-import 'package:social_network/controllers/user_controller.dart';
 import 'package:social_network/models/generic_model.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-
-import '../models/user.dart';
 
 class DatabaseHelper {
   Database? _db;

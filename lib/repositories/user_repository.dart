@@ -1,8 +1,6 @@
 import 'package:social_network/models/user.dart';
 import 'package:social_network/repositories/database_helper.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'generic_repository.dart';

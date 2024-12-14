@@ -1,18 +1,13 @@
 import 'dart:io';
 
-import 'package:social_network/views/home_page.dart';
 import 'package:social_network/views/login_screen.dart';
 import 'package:social_network/controllers/post_controller.dart';
-import 'package:social_network/views/profile_screen.dart';
-import 'package:social_network/views/registration_screen.dart';
 import 'package:social_network/repositories/post_repository.dart';
 import 'package:social_network/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'controllers/user_controller.dart';
-import 'models/user.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'repositories/database_helper.dart';
 
 Future<void> main() async {
   if (Platform.isWindows || Platform.isLinux) {

@@ -8,7 +8,7 @@ import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
-  UserController uc = Get.find<UserController>();
+  final UserController uc = Get.find<UserController>();
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

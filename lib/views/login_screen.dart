@@ -3,6 +3,7 @@ import 'package:social_network/views/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/post_controller.dart';
 import '../controllers/user_controller.dart';
 import '../models/user.dart';
 
@@ -18,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                           controller: _passwordController,
                           textAlign: TextAlign.left,
+                          obscureText: _obscurePassword,
                           style: const TextStyle(
                             color: Colors.black,
                             backgroundColor: Colors.white,
@@ -116,6 +119,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             prefixIcon: const Icon(Icons.lock_rounded,
                                 color: Colors.black),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5),
                               borderSide: BorderSide.none,

@@ -19,6 +19,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController _emailController = TextEditingController();
   UserController uc = Get.find<UserController>();
 
+  bool _isPasswordVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +103,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             if (value!.isEmpty) {
                               return 'Required Field!!';
                             }
-
                             return null;
                           },
                         ),
@@ -110,69 +111,83 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),
                         child: TextFormField(
-                            controller: _emailController,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              backgroundColor: Colors.white,
+                          controller: _emailController,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            backgroundColor: Colors.white,
+                          ),
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 15,
                             ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 15,
-                              ),
-                              prefixIcon:
-                                  const Icon(Icons.mail, color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide.none,
-                              ),
-                              hintText: 'ex:user123@gmail.com',
-                              hintStyle: TextStyle(color: Colors.grey[400]),
+                            prefixIcon:
+                                const Icon(Icons.mail, color: Colors.black),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide.none,
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Required Field!!';
-                              }
-
-                              return null;
-                            }),
+                            hintText: 'ex:user123@gmail.com',
+                            hintStyle: TextStyle(color: Colors.grey[400]),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Required Field!!';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.symmetric(
                             horizontal: 20, vertical: 10),
                         child: TextFormField(
-                            controller: _passwordController,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              backgroundColor: Colors.white,
+                          controller: _passwordController,
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            backgroundColor: Colors.white,
+                          ),
+                          obscureText: !_isPasswordVisible,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(
+                              horizontal: 15,
+                              vertical: 15,
                             ),
-                            decoration: InputDecoration(
-                              filled: true,
-                              fillColor: Colors.white,
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 15,
+                            prefixIcon: const Icon(Icons.lock_rounded,
+                                color: Colors.black),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _isPasswordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.black,
                               ),
-                              prefixIcon: const Icon(Icons.lock_rounded,
-                                  color: Colors.black),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide.none,
-                              ),
-                              hintText: 'ex:123...',
-                              hintStyle: TextStyle(color: Colors.grey[400]),
+                              onPressed: () {
+                                setState(() {
+                                  _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              },
                             ),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'Required Field!!';
-                              }
-
-                              return null;
-                            }),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide.none,
+                            ),
+                            hintText: 'ex:123...',
+                            hintStyle: TextStyle(color: Colors.grey[400]),
+                          ),
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Required Field!!';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       Row(
                         children: [
@@ -213,7 +228,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                     Get.off(
                                         () => HomePage(currentUser: newUser));
                                   } else {
-                                    // ignore: use_build_context_synchronously
                                     showDialog(
                                       context: context,
                                       builder: (context) => const Text(

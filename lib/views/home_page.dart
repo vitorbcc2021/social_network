@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
-import '../widgets/floating_profile_button.dart';
-import '../widgets/logo.dart';
-import '../widgets/whats_new.dart';
-import '../widgets/home_page_post_viewer.dart';
+import '../widgets/homepage/floating_profile_button.dart';
+import '../widgets/homepage/logo.dart';
+import '../widgets/homepage/whats_new.dart';
+import '../widgets/homepage/home_post_viewer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.currentUser});

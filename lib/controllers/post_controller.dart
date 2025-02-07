@@ -53,6 +53,9 @@ class PostController extends GetxController {
     return _repository.getAllPosts();
   }
 
+  /**
+   * Get a list of all posts of the user passed by id.
+   */
   Future<List<Map>?> getAllByUserID(int userID) {
     return _repository.getAllByUserID(userID);
   }

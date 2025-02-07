@@ -4,8 +4,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/user_controller.dart';
-import '../models/user.dart';
+import '../../controllers/user_controller.dart';
+import '../../models/user.dart';
 
 class ProfileBanner extends StatelessWidget {
   const ProfileBanner(

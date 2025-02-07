@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/post_controller.dart';
-import '../controllers/user_controller.dart';
-import '../models/post.dart';
-import '../views/home_page.dart';
-import '../views/profile_screen.dart';
+import '../../controllers/post_controller.dart';
+import '../../controllers/user_controller.dart';
+import '../../models/post.dart';
+import '../../views/home_page.dart';
+import '../../views/profile_screen.dart';
 
 class FloatingProfileButton extends StatelessWidget {
   const FloatingProfileButton({

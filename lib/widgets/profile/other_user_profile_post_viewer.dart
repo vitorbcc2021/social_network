@@ -3,23 +3,27 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/post_controller.dart';
-import '../models/post.dart';
-import '../models/user.dart';
-import '../views/profile_screen.dart';
+import '../../controllers/post_controller.dart';
+import '../../models/post.dart';
+import '../../models/user.dart';
+import '../../views/profile_screen.dart';
 
-class PostViewer extends StatelessWidget {
-  const PostViewer({super.key, required this.currentUser});
+class OtherUserProfile extends GetView<PostController> {
+  const OtherUserProfile(
+      {super.key,
+      required this.currentUser,
+      required this.otherUser,
+      required this.posts});
+
   final User currentUser;
+  final User otherUser;
+  final List<Post> posts;
 
   @override
   Widget build(BuildContext context) {
-    PostController controller = Get.find<PostController>();
-    print('tamanho do controller ${controller.length}');
     return ListView.builder(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: controller.length,
+      itemCount: posts.length,
       itemBuilder: (context, index) => GetBuilder<PostController>(
         builder: (controller) => Container(
           margin: const EdgeInsets.symmetric(vertical: 10),
@@ -31,10 +35,10 @@ class PostViewer extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.blueGrey.shade800,
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(9),
+                  borderRadius: BorderRadius.circular(4),
                   child: SizedBox(
                     height: 300,
                     width: 300,
@@ -88,8 +92,8 @@ class PostViewer extends StatelessWidget {
 
                     Get.to(() => ProfileScreen(
                           currentUser: currentUser,
-                          posts: posts,
                           otherUser: otherUser,
+                          posts: posts,
                         ));
                   } else {
                     maps = await controller.getAllByUserID(currentUser.id!);

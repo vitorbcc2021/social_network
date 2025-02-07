@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:social_network/widgets/profile_screen_post_viewer.dart';
+import 'package:social_network/widgets/profile/profile_post_viewer.dart';
 
 import '../controllers/user_controller.dart';
-import '../widgets/follow_button.dart';
-import '../widgets/logout_button.dart';
-import '../widgets/profile_banner.dart';
+import '../widgets/profile/follow_button.dart';
+import '../widgets/profile/logout_button.dart';
+import '../widgets/profile/profile_banner.dart';
 import 'home_page.dart';
 import '../models/post.dart';
 import '../models/user.dart';
@@ -253,7 +253,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               // ),
               PostViewer(
                   currentUser: widget.currentUser,
-                  otherUser: widget.otherUser != null ? widget.otherUser : null,
+                  otherUser: widget.otherUser,
                   posts: widget.posts),
             ],
           );

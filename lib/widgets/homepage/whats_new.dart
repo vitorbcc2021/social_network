@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:social_network/controllers/post_controller.dart';
 import 'package:social_network/models/post.dart';
 
-import '../models/user.dart';
+import '../../models/user.dart';
 
 class WhatsNew extends StatelessWidget {
   const WhatsNew({super.key, required this.currentUser});
@@ -46,12 +46,21 @@ class WhatsNew extends StatelessWidget {
             child: Container(
               alignment: Alignment.center,
               width: double.infinity,
-              child: const Text(
-                'What\'s new?',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.text_fields,
+                    color: Colors.grey,
+                  ),
+                  Text(
+                    'What\'s new?',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -81,11 +90,11 @@ class WhatsNew extends StatelessWidget {
             }
           },
           child: Container(
-            margin: const EdgeInsets.fromLTRB(45, 110, 50, 0),
+            margin: const EdgeInsets.fromLTRB(45, 113, 50, 0),
             child: const Icon(
               Icons.add_a_photo_outlined,
               color: Colors.blueGrey,
-              size: 35,
+              size: 32,
             ),
           ),
         )

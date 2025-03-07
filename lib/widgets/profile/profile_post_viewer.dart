@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/post_controller.dart';
 import '../../models/post.dart';
 import '../../models/user.dart';
-import '../../views/profile_screen.dart';
 import 'other_user_profile_post_viewer.dart';
 import 'own_profile_post_viewer.dart';
 

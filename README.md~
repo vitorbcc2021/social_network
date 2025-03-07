@@ -5,7 +5,7 @@ Hello, world!
 I'm Vitor Allace, i'm a Computer Science student from IFGOIANO - Morrinhos, and this is Picshare, my flutter social network project that ive developed only for learning reasons!
 
 ### How to run?
-This code was made using `Flutter 3.24.3` and `JDK 23`.  
+This code was made using `Flutter 3.10.6` and `JDK 19`.  
 All the application was implemented and tested using Windows 10 desktop mode.  
 Linux users needs to install the dependencies:
   ```

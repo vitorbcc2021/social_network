@@ -3,7 +3,6 @@ import 'package:social_network/views/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/post_controller.dart';
 import '../controllers/user_controller.dart';
 import '../models/user.dart';
 

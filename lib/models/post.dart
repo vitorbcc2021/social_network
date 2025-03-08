@@ -1,18 +1,12 @@
-import 'package:social_network/models/user.dart';
-
 import 'generic_model.dart';
+import 'user.dart';
 
 class Post extends GenericModel {
   User user;
   String imagePath;
   late int likes;
 
-  Post(
-      {required this.user,
-      required this.imagePath,
-      super.id,
-      likes,
-      super.tableName = 'post'}) {
+  Post({required this.user, required this.imagePath, super.id, likes}) {
     if (likes != null) {
       this.likes = likes;
     } else {

@@ -6,10 +6,6 @@ class User extends GenericModel {
   late int followers;
   late String email;
   late int logged;
-  // late String imFrom;
-  // late String phone;
-  // late String favFood;
-  // late String favColor;
   late String banner;
 
   User.fromModel(Map<String, dynamic> map) : super.fromMap(map) {}
@@ -19,7 +15,6 @@ class User extends GenericModel {
       profilePicture,
       required this.email,
       super.id,
-      super.tableName = 'user_profile',
       banner}) {
     if (profilePicture != null) {
       this.profilePicture = profilePicture;

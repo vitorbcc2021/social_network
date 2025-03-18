@@ -1,11 +1,7 @@
 class GenericModel {
-  late int? id;
+  late String? id;
 
   GenericModel({this.id});
-
-  GenericModel.fromMap(Map map) {
-    id = map['id'];
-  }
 
   Map<String, Object?>? toMap() {
     UnimplementedError(

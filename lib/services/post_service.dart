@@ -1,17 +1,15 @@
 import '../models/post.dart';
 
 class PostService {
-  void addPost(Post post) {}
+  void addPost(Post post) async {}
 
-  void removePost(Post post) {}
+  void getById(int id) async {}
 
-  void removeById(int id) {}
+  void getAllByUserID(int userID) async {}
 
-  void getAllPosts() {}
+  void getAllPosts() async {}
 
-  void getAllByUserID(int userID) {}
+  void updatePost(Post oldPost, Post newPost) async {}
 
-  void getById(int id) {}
-
-  void edit(Post oldPost, Post newPost) {}
+  void removeById(int id) async {}
 }

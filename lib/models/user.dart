@@ -1,33 +1,27 @@
 import 'generic_model.dart';
 
 class User extends GenericModel {
-  late String userName;
-  late String profilePicture;
-  late int followers;
+  late String name;
   late String email;
-  late int logged;
+  late String profilePicture;
   late String banner;
+  late int followers;
 
-  User.fromModel(Map<String, dynamic> map) : super.fromMap(map) {}
+  User({
+    super.id,
+    required this.name,
+    required this.email,
+    profilePicture,
+    banner,
+  }) {
+    followers = 0;
 
-  User(
-      {required this.userName,
-      profilePicture,
-      required this.email,
-      super.id,
-      banner}) {
     if (profilePicture != null) {
       this.profilePicture = profilePicture;
     } else {
       this.profilePicture = '';
     }
 
-    followers = 0;
-    logged = 1;
-    // imFrom = '';
-    // phone = '';
-    // favFood = '';
-    // favColor = '';
     if (banner != null) {
       this.banner = banner;
     } else {
@@ -35,11 +29,21 @@ class User extends GenericModel {
     }
   }
 
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['userID'],
+      name: json['name'],
+      email: json['email'],
+      profilePicture: json['profilePicture'] ?? '',
+      banner: json['banner'] ?? '',
+    );
+  }
+
   @override
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'name': userName,
+      'name': name,
       'profile_photo': profilePicture,
       'profile_banner': banner,
       'followers': followers,

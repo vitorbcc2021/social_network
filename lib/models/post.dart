@@ -3,10 +3,10 @@ import 'user.dart';
 
 class Post extends GenericModel {
   User user;
-  String imagePath;
+  String imgPath;
   late int likes;
 
-  Post({required this.user, required this.imagePath, super.id, likes}) {
+  Post({required this.user, required this.imgPath, super.id, likes}) {
     if (likes != null) {
       this.likes = likes;
     } else {
@@ -19,9 +19,8 @@ class Post extends GenericModel {
     return {
       'id': id,
       'fk_profile': user.id,
-      'photo': imagePath,
-      'txt': '',
-      "likes": likes,
+      'photo': imgPath,
+      'likes': likes,
     };
   }
 }

@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/post_controller.dart';
+import '../../controllers/user_controller.dart';
 import '../../models/post.dart';
 import '../../models/user.dart';
 import '../../views/profile_screen.dart';
 
 class PostViewer extends StatelessWidget {
-  const PostViewer({super.key, required this.currentUser, this.otherUser});
-  final User currentUser;
+  const PostViewer({super.key, this.otherUser});
   final User? otherUser;
 
   @override
   Widget build(BuildContext context) {
-    PostController controller = Get.find<PostController>();
+    final uc = Get.find<UserController>();
+    final controller = Get.find<PostController>();
     print('tamanho do controller ${controller.length}');
     return ListView.builder(
       shrinkWrap: true,
@@ -70,7 +71,7 @@ class PostViewer extends StatelessWidget {
 
                   User otherUser = (await controller.getById(index + 1)).user;
 
-                  if (otherUser.id != currentUser.id) {
+                  if (otherUser.id != uc.currentUser!.id) {
                     maps = await controller.getAllByUserID(otherUser.id!);
 
                     if (maps != null) {
@@ -87,20 +88,20 @@ class PostViewer extends StatelessWidget {
                     }
 
                     Get.to(() => ProfileScreen(
-                          currentUser: currentUser,
+                          currentUser: uc.currentUser!,
                           otherUser: otherUser,
                           posts: posts,
                         ));
                   } else {
-                    maps = await controller.getAllByUserID(currentUser.id!);
+                    maps = await controller.getAllByUserID(uc.currentUser!.id);
 
                     if (maps != null) {
                       for (Map map in maps) {
-                        if (currentUser.id == map['fk_profile']) {
+                        if (uc.currentUser!.id == map['fk_profile']) {
                           posts.add(Post(
                             id: map['id'],
                             imagePath: map['photo'],
-                            user: currentUser,
+                            user: uc.currentUser!,
                             likes: map['likes'],
                           ));
                         }
@@ -108,7 +109,7 @@ class PostViewer extends StatelessWidget {
                     }
 
                     Get.to(() => ProfileScreen(
-                          currentUser: currentUser,
+                          currentUser: uc.currentUser!,
                           posts: posts,
                         ));
                   }

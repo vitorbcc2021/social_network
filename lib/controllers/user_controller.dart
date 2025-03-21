@@ -71,4 +71,19 @@ class UserController extends GetxController {
     _currentUser.value = null;
     return true;
   }
+
+  Future<bool> register(String name, String email, String password) async {
+    try {
+      final newUser = await _userService.addUser(name, email, password);
+      _currentUser.value = newUser;
+
+      return true;
+    } on Exception catch (e) {
+      if (e.toString().contains('já cadastrado')) {
+        return false;
+      }
+      Get.snackbar('Erro', e.toString());
+      return false;
+    }
+  }
 }

@@ -1,9 +1,8 @@
-import 'package:social_network/controllers/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/user_controller.dart';
 import 'home_page.dart';
-import '../models/user.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -13,11 +12,11 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  UserController uc = Get.find<UserController>();
+  final _key = GlobalKey<FormState>();
+  final _userNameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final uc = Get.find<UserController>();
 
   bool _isPasswordVisible = false;
 
@@ -216,22 +215,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                   backgroundColor: Colors.green),
                               onPressed: () async {
                                 FocusScope.of(context).unfocus();
-                                User newUser = User(
-                                    userName: _userNameController.text,
-                                    email: _emailController.text);
+                                final uc = Get.find<UserController>();
 
                                 if (_key.currentState!.validate()) {
-                                  if (await uc.addUser(
-                                      user: newUser,
-                                      email: _emailController.text,
-                                      password: _passwordController.text)) {
-                                    Get.off(
-                                        () => HomePage(currentUser: newUser));
+                                  final success = await uc.register(
+                                    _userNameController.text,
+                                    _emailController.text,
+                                    _passwordController.text,
+                                  );
+
+                                  if (success) {
+                                    Get.off(() => const HomePage());
                                   } else {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => const Text(
-                                          'This User Already Exists!'),
+                                    Get.defaultDialog(
+                                      title: 'Oops!',
+                                      middleText:
+                                          'Este email já está cadastrado',
+                                      textConfirm: 'OK',
+                                      confirmTextColor: Colors.white,
+                                      onConfirm: Get.back,
                                     );
                                   }
                                 }

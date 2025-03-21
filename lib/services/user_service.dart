@@ -5,23 +5,23 @@ import '../models/user.dart';
 class UserService {
   static const String _baseUrl = 'http://localhost:8080/user';
 
-  Future<User> addUser(User user) async {
+  Future<User> addUser(String name, String email, String password) async {
     final response = await http.post(
       Uri.parse('$_baseUrl/'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'name': user.name,
-        'email': user.email,
-        'profilePicture': user.profilePicture,
-        'banner': user.banner,
-        'followers': user.followers,
+        'name': name,
+        'email': email,
+        'password': password,
       }),
     );
 
     if (response.statusCode == 201) {
       return User.fromJson(jsonDecode(response.body));
+    } else if (response.statusCode == 409) {
+      throw Exception('Email já cadastrado');
     } else {
-      throw Exception('Failed to create user: ${response.reasonPhrase}');
+      throw Exception('Falha no cadastro: ${response.reasonPhrase}');
     }
   }
 

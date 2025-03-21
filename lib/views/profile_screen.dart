@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:social_network/widgets/profile/profile_post_viewer.dart';
 
 import '../controllers/user_controller.dart';
 import '../widgets/profile/follow_button.dart';
 import '../widgets/profile/logout_button.dart';
 import '../widgets/profile/profile_banner.dart';
+import '../widgets/profile/profile_post_viewer.dart';
 import 'home_page.dart';
 import '../models/post.dart';
 import '../models/user.dart';
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      Get.off(() => HomePage(currentUser: widget.currentUser));
+                      Get.off(() => const HomePage());
                     },
                   ),
                   Container(
@@ -120,14 +120,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     constraints: const BoxConstraints(maxWidth: 280),
                     child: (widget.otherUser != null)
                         ? Text(
-                            widget.otherUser!.userName,
+                            widget.otherUser!.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: const TextStyle(
                                 fontSize: 30, color: Colors.white),
                           )
                         : Text(
-                            widget.currentUser.userName,
+                            widget.currentUser.name,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: const TextStyle(

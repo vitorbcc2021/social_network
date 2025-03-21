@@ -180,8 +180,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   if (loggedUser != null) {
                                     try {
-                                      Get.to(() =>
-                                          HomePage(currentUser: loggedUser));
+                                      Get.to(() => const HomePage());
                                     } catch (e) {
                                       e.printError();
                                     }

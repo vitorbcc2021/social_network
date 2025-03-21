@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../models/user.dart';
+import '../controllers/user_controller.dart';
 import '../widgets/homepage/floating_profile_button.dart';
 import '../widgets/homepage/logo.dart';
 import '../widgets/homepage/whats_new.dart';
 import '../widgets/homepage/home_post_viewer.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.currentUser});
-  final User currentUser;
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final uc = Get.find<UserController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +29,13 @@ class _HomePageState extends State<HomePage> {
                 ListView(
                   children: [
                     WhatsNew(
-                      currentUser: widget.currentUser,
+                      currentUser: uc.currentUser!,
                     ),
-                    PostViewer(currentUser: widget.currentUser),
+                    const PostViewer(),
                   ],
                 ),
                 const Logo(),
-                FloatingProfileButton(widget: widget),
+                const FloatingProfileButton(),
               ],
             ),
           ),

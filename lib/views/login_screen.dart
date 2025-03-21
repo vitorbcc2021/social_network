@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   backgroundColor: Colors.green),
                               onPressed: () async {
                                 if (_key.currentState!.validate()) {
-                                  User? loggedUser = await widget.uc.getByLogin(
+                                  User? loggedUser = await widget.uc.login(
                                       _emailController.text,
                                       _passwordController.text);
 

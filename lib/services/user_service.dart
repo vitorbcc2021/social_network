@@ -13,7 +13,8 @@ class UserService {
         'name': user.name,
         'email': user.email,
         'profilePicture': user.profilePicture,
-        'banner': user.banner
+        'banner': user.banner,
+        'followers': user.followers,
       }),
     );
 
@@ -77,7 +78,8 @@ class UserService {
         'name': newUser.name,
         'email': newUser.email,
         'profilePicture': newUser.profilePicture,
-        'banner': newUser.banner
+        'banner': newUser.banner,
+        'followers': newUser.followers, // Adicionado
       }),
     );
 

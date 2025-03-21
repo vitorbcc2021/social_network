@@ -13,20 +13,29 @@ class User extends GenericModel {
     required this.email,
     profilePicture,
     banner,
+    followers,
   }) {
-    followers = 0;
+    this.followers = followers ?? 0;
+    this.profilePicture = profilePicture ?? '';
+    this.banner = banner ?? '';
+  }
 
-    if (profilePicture != null) {
-      this.profilePicture = profilePicture;
-    } else {
-      this.profilePicture = '';
-    }
-
-    if (banner != null) {
-      this.banner = banner;
-    } else {
-      this.banner = '';
-    }
+  User copyWith({
+    String? id,
+    String? name,
+    String? email,
+    String? profilePicture,
+    String? banner,
+    int? followers,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      profilePicture: profilePicture ?? this.profilePicture,
+      banner: banner ?? this.banner,
+      followers: followers ?? this.followers,
+    );
   }
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -36,6 +45,7 @@ class User extends GenericModel {
       email: json['email'],
       profilePicture: json['profilePicture'] ?? '',
       banner: json['banner'] ?? '',
+      followers: json['followers'] ?? 0,
     );
   }
 

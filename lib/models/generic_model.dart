@@ -1,4 +1,4 @@
-class GenericModel {
+abstract class GenericModel {
   late String? id;
 
   GenericModel({this.id});

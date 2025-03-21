@@ -1,20 +1,74 @@
-import 'package:social_network/models/user.dart';
 import 'package:get/get.dart';
 
+import '../models/user.dart';
+import '../services/user_service.dart';
+
 class UserController extends GetxController {
-  void changeProfilePicture(User user, String url) {
-    update();
+  final UserService _userService;
+
+  UserController(this._userService);
+
+  final Rx<User?> _currentUser = Rx<User?>(null);
+
+  User? get currentUser => _currentUser.value;
+
+  Future<User?> login(String email, String password) async {
+    try {
+      final user = await _userService.getByLogin(email, password);
+      _currentUser.value = user;
+      return user;
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to login: $e');
+      return null;
+    }
   }
 
-  void changeUserName(int userId, String newUsername) {
-    update();
+  Future<void> changeProfilePicture(User user, String url) async {
+    try {
+      final updatedUser = await _userService.updateUser(
+        user.id!,
+        user.copyWith(profilePicture: url),
+      );
+      _currentUser.value = updatedUser;
+      update();
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to update profile picture: $e');
+    }
   }
 
-  void changeBanner(User user, String url) {
-    update();
+  Future<void> changeUserName(String newUsername) async {
+    try {
+      if (_currentUser.value == null) {
+        throw Exception('No user logged in');
+      }
+
+      final updatedUser = await _userService.updateUser(
+        _currentUser.value!.id!,
+        _currentUser.value!.copyWith(name: newUsername),
+      );
+
+      _currentUser.value = updatedUser;
+      update();
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to update username: $e');
+    }
   }
 
-  bool logout(User model) {
+  Future<void> changeBanner(User user, String url) async {
+    try {
+      final updatedUser = await _userService.updateUser(
+        user.id!,
+        user.copyWith(banner: url),
+      );
+      _currentUser.value = updatedUser;
+      update();
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to update banner: $e');
+    }
+  }
+
+  bool logout() {
+    _currentUser.value = null;
     return true;
   }
 }

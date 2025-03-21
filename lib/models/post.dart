@@ -14,6 +14,19 @@ class Post extends GenericModel {
     }
   }
 
+  factory Post.fromJson(Map<String, dynamic> json) {
+    return Post(
+      id: json['postID'],
+      user: User(
+        id: json['userId'],
+        name: json['userName'] ?? '',
+        email: json['email'],
+      ),
+      imgPath: json['imagePath'],
+      likes: json['likes'],
+    );
+  }
+
   @override
   Map<String, Object?> toMap() {
     return {

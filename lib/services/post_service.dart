@@ -10,10 +10,9 @@ class PostService {
       Uri.parse('$_baseUrl/'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
+        'userId': post.userId,
         'imagePath': post.imgPath,
-        'text': '', // Adicione um campo de texto se necessário
-        'likes': post.likes,
-        'userId': post.user.id
+        'likes': post.likes
       }),
     );
 
@@ -39,24 +38,21 @@ class PostService {
     }
   }
 
-  Future<List<Post>> getAllByUserID(String userId) async {
+  Future<List<Post>> getAllFromUser(String userId) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/'),
+      Uri.parse('$_baseUrl/$userId'),
       headers: {'Accept': 'application/json'},
     );
 
     if (response.statusCode == 200) {
       final List<dynamic> postsJson = jsonDecode(response.body);
-      return postsJson
-          .where((post) => post['userId'] == userId)
-          .map((json) => Post.fromJson(json))
-          .toList();
+      return postsJson.map((json) => Post.fromJson(json)).toList();
     } else {
-      throw Exception('Failed to load posts: ${response.statusCode}');
+      throw Exception('Failed to load user posts');
     }
   }
 
-  Future<List<Post>> getAllPosts() async {
+  Future<List<Post>> getAll() async {
     final response = await http.get(
       Uri.parse('$_baseUrl/'),
       headers: {'Accept': 'application/json'},
@@ -70,15 +66,14 @@ class PostService {
     }
   }
 
-  Future<Post> updatePost(String id, Post newPost) async {
+  Future<Post> update(String id, Post newPost) async {
     final response = await http.put(
       Uri.parse('$_baseUrl/$id'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
+        'userId': newPost.userId,
         'imagePath': newPost.imgPath,
-        'text': '', // Adicione um campo de texto se necessário
-        'likes': newPost.likes,
-        'userId': newPost.user.id
+        'likes': newPost.likes
       }),
     );
 
@@ -89,7 +84,7 @@ class PostService {
     }
   }
 
-  Future<void> removeById(String id) async {
+  Future<void> remove(String id) async {
     final response = await http.delete(
       Uri.parse('$_baseUrl/$id'),
     );

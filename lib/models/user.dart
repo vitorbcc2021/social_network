@@ -1,6 +1,6 @@
 import 'generic_model.dart';
 
-class User extends GenericModel {
+class User extends GenericModel<User> {
   late String name;
   late String email;
   late String profilePicture;
@@ -20,6 +20,7 @@ class User extends GenericModel {
     this.banner = banner ?? '';
   }
 
+  @override
   User copyWith({
     String? id,
     String? name,

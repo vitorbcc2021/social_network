@@ -40,7 +40,7 @@ class UserService {
     }
   }
 
-  Future<User> getByLogin(String email, String password) async {
+  Future<User> login(String email, String password) async {
     final response = await http.post(
       Uri.parse('$_baseUrl/login'),
       headers: {'Content-Type': 'application/json'},
@@ -56,7 +56,7 @@ class UserService {
     }
   }
 
-  Future<List<User>> getAllUsers() async {
+  Future<List<User>> getAll() async {
     final response = await http.get(
       Uri.parse('$_baseUrl/'),
       headers: {'Accept': 'application/json'},
@@ -70,7 +70,7 @@ class UserService {
     }
   }
 
-  Future<User> updateUser(String id, User newUser) async {
+  Future<User> update(String id, User newUser) async {
     final response = await http.put(
       Uri.parse('$_baseUrl/$id'),
       headers: {'Content-Type': 'application/json'},
@@ -90,7 +90,7 @@ class UserService {
     }
   }
 
-  Future<void> removeById(String id) async {
+  Future<void> remove(String id) async {
     final response = await http.delete(
       Uri.parse('$_baseUrl/$id'),
     );

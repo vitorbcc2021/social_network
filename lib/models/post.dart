@@ -1,27 +1,44 @@
+import 'package:get/get.dart';
+
+import '../controllers/user_controller.dart';
 import 'generic_model.dart';
-import 'user.dart';
 
-class Post extends GenericModel {
-  User user;
+class Post extends GenericModel<Post> {
+  String userId;
   String imgPath;
-  late int likes;
+  List<String> likes;
 
-  Post({required this.user, required this.imgPath, super.id, likes}) {
-    if (likes != null) {
-      this.likes = likes;
-    } else {
-      this.likes = 0;
-    }
+  Post({
+    super.id,
+    required this.userId,
+    required this.imgPath,
+    List<String>? likes,
+  }) : likes = likes ?? [];
+
+  @override
+  Post copyWith({
+    String? id,
+    String? userId,
+    String? imgPath,
+    List<String>? likes,
+  }) {
+    return Post(
+      id: id ?? this.id,
+      userId: userId ?? this.userId,
+      imgPath: imgPath ?? this.imgPath,
+      likes: likes ?? this.likes,
+    );
+  }
+
+  bool get isLiked {
+    final currentUserId = Get.find<UserController>().currentUser?.id;
+    return currentUserId != null && likes.contains(currentUserId);
   }
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       id: json['postID'],
-      user: User(
-        id: json['userId'],
-        name: json['userName'] ?? '',
-        email: json['email'],
-      ),
+      userId: json['userId'],
       imgPath: json['imagePath'],
       likes: json['likes'],
     );
@@ -31,8 +48,8 @@ class Post extends GenericModel {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'fk_profile': user.id,
-      'photo': imgPath,
+      'userId': userId,
+      'imgPath': imgPath,
       'likes': likes,
     };
   }

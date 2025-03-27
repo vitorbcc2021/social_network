@@ -1,7 +1,9 @@
-abstract class GenericModel {
+abstract class GenericModel<T> {
   late String? id;
 
   GenericModel({this.id});
+
+  T copyWith();
 
   Map<String, Object?>? toMap() {
     UnimplementedError(

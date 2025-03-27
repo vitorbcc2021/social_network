@@ -1,18 +1,17 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:social_network/controllers/post_controller.dart';
-import 'package:social_network/models/post.dart';
 
-import '../../models/user.dart';
+import '../../controllers/post_controller.dart';
+import '../../controllers/user_controller.dart';
+import '../../models/post.dart';
 
 class WhatsNew extends StatelessWidget {
-  const WhatsNew({super.key, required this.currentUser});
-
-  final User currentUser;
+  const WhatsNew({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final uc = Get.find<UserController>();
     return Stack(
       children: [
         Container(
@@ -24,7 +23,7 @@ class WhatsNew extends StatelessWidget {
               borderRadius: BorderRadius.circular(24),
               boxShadow: const [
                 BoxShadow(
-                  color: const Color.fromARGB(97, 0, 0, 0),
+                  color: Color.fromARGB(97, 0, 0, 0),
                   blurRadius: 20,
                 )
               ]),
@@ -67,7 +66,6 @@ class WhatsNew extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () async {
-            // Abre o diálogo para escolher um arquivo
             FilePickerResult? result;
             try {
               result = await FilePicker.platform.pickFiles(
@@ -81,9 +79,10 @@ class WhatsNew extends StatelessWidget {
               String? imagePath = result.files[0].path;
 
               if (imagePath != null) {
-                PostController pc = Get.find<PostController>();
+                final pc = Get.find<PostController>();
 
-                Post post = Post(imagePath: imagePath, user: currentUser);
+                Post post =
+                    Post(imgPath: imagePath, userId: uc.currentUser!.id!);
 
                 pc.addPost(post);
               }

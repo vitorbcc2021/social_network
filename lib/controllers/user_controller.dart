@@ -12,9 +12,18 @@ class UserController extends GetxController {
 
   User? get currentUser => _currentUser.value;
 
+  Future<User?> getUserById(String userId) async {
+    try {
+      return await _userService.getById(userId);
+    } catch (e) {
+      Get.snackbar('Erro', 'Falha ao buscar usuário: $e');
+      return null;
+    }
+  }
+
   Future<User?> login(String email, String password) async {
     try {
-      final user = await _userService.getByLogin(email, password);
+      final user = await _userService.login(email, password);
       _currentUser.value = user;
       return user;
     } catch (e) {
@@ -25,7 +34,7 @@ class UserController extends GetxController {
 
   Future<void> changeProfilePicture(User user, String url) async {
     try {
-      final updatedUser = await _userService.updateUser(
+      final updatedUser = await _userService.update(
         user.id!,
         user.copyWith(profilePicture: url),
       );
@@ -42,7 +51,7 @@ class UserController extends GetxController {
         throw Exception('No user logged in');
       }
 
-      final updatedUser = await _userService.updateUser(
+      final updatedUser = await _userService.update(
         _currentUser.value!.id!,
         _currentUser.value!.copyWith(name: newUsername),
       );
@@ -56,7 +65,7 @@ class UserController extends GetxController {
 
   Future<void> changeBanner(User user, String url) async {
     try {
-      final updatedUser = await _userService.updateUser(
+      final updatedUser = await _userService.update(
         user.id!,
         user.copyWith(banner: url),
       );

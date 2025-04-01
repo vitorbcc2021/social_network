@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../models/user.dart';
 
 class UserService {
-  static const String _baseUrl = 'http://localhost:8080/user';
+  static const String _baseUrl = 'http://localhost:8080/users';
 
   Future<User> addUser(String name, String email, String password) async {
     final response = await http.post(
@@ -75,11 +75,12 @@ class UserService {
       Uri.parse('$_baseUrl/$id'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
+        'id': newUser.id,
         'name': newUser.name,
         'email': newUser.email,
         'profilePicture': newUser.profilePicture,
         'banner': newUser.banner,
-        'followers': newUser.followers, // Adicionado
+        'followers': newUser.followers,
       }),
     );
 

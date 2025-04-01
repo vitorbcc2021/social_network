@@ -41,7 +41,7 @@ class User extends GenericModel<User> {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['userID'],
+      id: json['id'],
       name: json['name'],
       email: json['email'],
       profilePicture: json['profilePicture'] ?? '',

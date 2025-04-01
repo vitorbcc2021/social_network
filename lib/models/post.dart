@@ -37,9 +37,9 @@ class Post extends GenericModel<Post> {
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      id: json['postID'],
+      id: json['id'],
       userId: json['userId'],
-      imgPath: json['imagePath'],
+      imgPath: json['imgPath'],
       likes: json['likes'],
     );
   }

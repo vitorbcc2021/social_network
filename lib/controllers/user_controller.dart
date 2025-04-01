@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../models/user.dart';
@@ -16,7 +17,8 @@ class UserController extends GetxController {
     try {
       return await _userService.getById(userId);
     } catch (e) {
-      Get.snackbar('Erro', 'Falha ao buscar usuário: $e');
+      Get.snackbar('Erro', 'Falha ao buscar usuário: $e',
+          colorText: Colors.red);
       return null;
     }
   }
@@ -27,7 +29,7 @@ class UserController extends GetxController {
       _currentUser.value = user;
       return user;
     } catch (e) {
-      Get.snackbar('Error', 'Failed to login: $e');
+      Get.snackbar('Error', 'Failed to login: $e', colorText: Colors.red);
       return null;
     }
   }
@@ -41,7 +43,8 @@ class UserController extends GetxController {
       _currentUser.value = updatedUser;
       update();
     } catch (e) {
-      Get.snackbar('Error', 'Failed to update profile picture: $e');
+      Get.snackbar('Error', 'Failed to update profile picture: $e',
+          colorText: Colors.red);
     }
   }
 
@@ -59,7 +62,8 @@ class UserController extends GetxController {
       _currentUser.value = updatedUser;
       update();
     } catch (e) {
-      Get.snackbar('Error', 'Failed to update username: $e');
+      Get.snackbar('Error', 'Failed to update username: $e',
+          colorText: Colors.red);
     }
   }
 
@@ -72,7 +76,8 @@ class UserController extends GetxController {
       _currentUser.value = updatedUser;
       update();
     } catch (e) {
-      Get.snackbar('Error', 'Failed to update banner: $e');
+      Get.snackbar('Error', 'Failed to update banner: $e',
+          colorText: Colors.red);
     }
   }
 
@@ -91,7 +96,7 @@ class UserController extends GetxController {
       if (e.toString().contains('já cadastrado')) {
         return false;
       }
-      Get.snackbar('Erro', e.toString());
+      Get.snackbar('Erro', e.toString(), colorText: Colors.red);
       return false;
     }
   }

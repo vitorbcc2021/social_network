@@ -7,8 +7,7 @@ import '../controllers/user_controller.dart';
 import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
-  final UserController uc = Get.find<UserController>();
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -18,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final UserController uc = Get.find<UserController>();
   bool _obscurePassword = true;
 
   @override
@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   backgroundColor: Colors.green),
                               onPressed: () async {
                                 if (_key.currentState!.validate()) {
-                                  User? loggedUser = await widget.uc.login(
+                                  User? loggedUser = await uc.login(
                                       _emailController.text,
                                       _passwordController.text);
 

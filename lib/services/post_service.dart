@@ -10,8 +10,9 @@ class PostService {
       Uri.parse('$_baseUrl/'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
+        'id': post.id,
         'userId': post.userId,
-        'imagePath': post.imgPath,
+        'imgPath': post.imgPath,
         'likes': post.likes
       }),
     );

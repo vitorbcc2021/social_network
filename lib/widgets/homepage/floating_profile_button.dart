@@ -18,7 +18,7 @@ class FloatingProfileButton extends StatelessWidget {
         left: 7.0,
         child: GestureDetector(
           onTap: () {
-            Get.to(() => const ProfileScreen());
+            Get.off(() => const ProfileScreen());
           },
           child: Container(
             width: 60,

@@ -17,7 +17,7 @@ Future<void> main() async {
         useMaterial3: true,
       ),
       initialBinding: AppBindings(),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     ),
   );
 }

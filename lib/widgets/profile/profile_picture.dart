@@ -13,12 +13,10 @@ class ProfilePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     final uc = Get.find<UserController>();
 
-    // Se não tem otherUserId, usa o currentUser
     if (otherUserId == null) {
       return _buildProfilePicture(uc.currentUser!, canEdit: true);
     }
 
-    // Se tem otherUserId, busca o usuário
     return FutureBuilder<User?>(
       future: uc.getUserById(otherUserId!),
       builder: (context, snapshot) {

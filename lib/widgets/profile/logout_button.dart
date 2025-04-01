@@ -24,7 +24,7 @@ class LogoutButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 3),
           onPressed: () {
             if (uc.logout()) {
-              Get.offAll(() => LoginScreen());
+              Get.offAll(() => const LoginScreen());
             }
           },
           icon: const Icon(

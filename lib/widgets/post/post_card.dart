@@ -54,7 +54,7 @@ class PostCard extends StatelessWidget {
       child: GestureDetector(
         onTap: () => _navigateToProfile(),
         child: FutureBuilder<User?>(
-          future: Get.find<UserController>().getUserById(post.userId),
+          future: Get.find<UserController>().getUserById(post.authorId),
           builder: (context, snapshot) {
             if (snapshot.connectionState != ConnectionState.done ||
                 !snapshot.hasData) {
@@ -159,9 +159,9 @@ class PostCard extends StatelessWidget {
 
   void _navigateToProfile() {
     final uc = Get.find<UserController>();
-    final isCurrentUser = uc.currentUser?.id == post.userId;
+    final isCurrentUser = uc.currentUser?.id == post.authorId;
     Get.to(() => ProfileScreen(
-          otherUserId: isCurrentUser ? null : post.userId,
+          otherUserId: isCurrentUser ? null : post.authorId,
         ));
   }
 }

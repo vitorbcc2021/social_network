@@ -11,7 +11,7 @@ class PostService {
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'id': post.id,
-        'userId': post.userId,
+        'authorId': post.authorId,
         'imgPath': post.imgPath,
         'likes': post.likes
       }),
@@ -39,9 +39,9 @@ class PostService {
     }
   }
 
-  Future<List<Post>> getAllFromUser(String userId) async {
+  Future<List<Post>> getAllFromUser(String authorId) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/$userId'),
+      Uri.parse('$_baseUrl/$authorId'),
       headers: {'Accept': 'application/json'},
     );
 
@@ -72,7 +72,7 @@ class PostService {
       Uri.parse('$_baseUrl/$id'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'userId': newPost.userId,
+        'authorId': newPost.authorId,
         'imagePath': newPost.imgPath,
         'likes': newPost.likes
       }),

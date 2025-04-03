@@ -82,7 +82,7 @@ class WhatsNew extends StatelessWidget {
                 final pc = Get.find<PostController>();
 
                 Post post =
-                    Post(imgPath: imagePath, userId: uc.currentUser!.id!);
+                    Post(imgPath: imagePath, authorId: uc.currentUser!.id!);
 
                 pc.addPost(post);
               }

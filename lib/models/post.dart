@@ -4,13 +4,13 @@ import '../controllers/user_controller.dart';
 import 'generic_model.dart';
 
 class Post extends GenericModel<Post> {
-  String userId;
+  String authorId;
   String imgPath;
   List<String> likes;
 
   Post({
     super.id,
-    required this.userId,
+    required this.authorId,
     required this.imgPath,
     List<String>? likes,
   }) : likes = likes ?? [];
@@ -18,29 +18,30 @@ class Post extends GenericModel<Post> {
   @override
   Post copyWith({
     String? id,
-    String? userId,
+    String? authorId,
     String? imgPath,
     List<String>? likes,
   }) {
     return Post(
       id: id ?? this.id,
-      userId: userId ?? this.userId,
+      authorId: authorId ?? this.authorId,
       imgPath: imgPath ?? this.imgPath,
       likes: likes ?? this.likes,
     );
   }
 
   bool get isLiked {
-    final currentUserId = Get.find<UserController>().currentUser?.id;
-    return currentUserId != null && likes.contains(currentUserId);
+    final currentAuthorId = Get.find<UserController>().currentUser?.id;
+    return currentAuthorId != null && likes.contains(currentAuthorId);
   }
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       id: json['id'],
-      userId: json['userId'],
+      authorId: json['author']['id'], // Acessa o ID dentro do objeto author
       imgPath: json['imgPath'],
-      likes: json['likes'],
+      likes:
+          List<String>.from(json['likes'] ?? []), // Converte a lista de likes
     );
   }
 
@@ -48,7 +49,7 @@ class Post extends GenericModel<Post> {
   Map<String, Object?> toMap() {
     return {
       'id': id,
-      'userId': userId,
+      'authorId': authorId,
       'imgPath': imgPath,
       'likes': likes,
     };

@@ -14,10 +14,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final UserController uc = Get.find<UserController>();
+  final _key = GlobalKey<FormState>();
+  final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final uc = Get.find<UserController>();
   bool _obscurePassword = true;
 
   @override
@@ -157,10 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 'Not Registered?',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline,
                                   decorationColor: Colors.white,
-                                  decorationThickness: 2.2,
                                 ),
                               ),
                             ),
@@ -199,6 +197,22 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
+                      GestureDetector(
+                        onTap: () {
+                          uc.visitAsRecruiter();
+                          Get.to(() => const HomePage());
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            "Visit as recruiter!",
+                            style: TextStyle(
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
+                                decorationColor: Colors.white),
+                          ),
+                        ),
+                      )
                     ],
                   ),
                 ),

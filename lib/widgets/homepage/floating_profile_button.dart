@@ -28,8 +28,8 @@ class FloatingProfileButton extends StatelessWidget {
             ),
             child: ClipOval(
               child: uc.currentUser!.profilePicture.isNotEmpty
-                  ? Image.file(
-                      File(uc.currentUser!.profilePicture),
+                  ? Image.network(
+                      uc.currentUser!.profilePicture,
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,

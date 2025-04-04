@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../controllers/post_controller.dart';
 import '../controllers/user_controller.dart';
 import '../models/user.dart';
 import '../widgets/post/post_viewer.dart';
@@ -47,7 +48,11 @@ class ProfileScreen extends StatelessWidget {
                       IconButton(
                         alignment: Alignment.topLeft,
                         icon: const Icon(Icons.arrow_back, color: Colors.white),
-                        onPressed: () => Get.off(() => const HomePage()),
+                        onPressed: () {
+                          final pc = Get.find<PostController>();
+                          pc.userPosts.clear();
+                          Get.off(() => const HomePage());
+                        },
                       ),
                       Container(
                         alignment: Alignment.center,

@@ -45,7 +45,7 @@ class ProfilePicture extends StatelessWidget {
         ),
         child: ClipOval(
           child: user.profilePicture.isNotEmpty
-              ? Image.file(File(user.profilePicture), fit: BoxFit.cover)
+              ? Image.network(user.profilePicture, fit: BoxFit.cover)
               : _buildFallbackProfilePicture(),
         ),
       ),

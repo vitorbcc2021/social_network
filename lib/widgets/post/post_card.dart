@@ -38,8 +38,8 @@ class PostCard extends StatelessWidget {
         child: SizedBox(
           height: 300,
           width: 300,
-          child: Image.file(
-            File(post.imgPath),
+          child: Image.network(
+            post.imgPath,
             fit: BoxFit.cover,
           ),
         ),
@@ -110,8 +110,8 @@ class PostCard extends StatelessWidget {
   Widget _buildProfilePicture(User user) {
     return ClipOval(
       child: user.profilePicture.isNotEmpty
-          ? Image.file(
-              File(user.profilePicture),
+          ? Image.network(
+              user.profilePicture,
               width: 40,
               height: 40,
               fit: BoxFit.cover,

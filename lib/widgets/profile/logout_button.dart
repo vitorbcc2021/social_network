@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/post_controller.dart';
 import '../../controllers/user_controller.dart';
 import '../../views/login_screen.dart';
 
@@ -24,6 +25,8 @@ class LogoutButton extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 3),
           onPressed: () {
             if (uc.logout()) {
+              final pc = Get.find<PostController>();
+              pc.userPosts.clear();
               Get.offAll(() => const LoginScreen());
             }
           },

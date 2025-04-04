@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../models/post.dart';
 
 class PostService {
-  static const String _baseUrl = 'http://localhost:8080/post';
+  static const String _baseUrl = 'http://172.16.102.96:8080/post';
 
   Future<Post> addPost(Post post) async {
     final response = await http.post(
@@ -41,7 +41,7 @@ class PostService {
 
   Future<List<Post>> getAllFromUser(String authorId) async {
     final response = await http.get(
-      Uri.parse('$_baseUrl/$authorId'),
+      Uri.parse('$_baseUrl/user/$authorId'),
       headers: {'Accept': 'application/json'},
     );
 

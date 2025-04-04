@@ -34,6 +34,18 @@ class UserController extends GetxController {
     }
   }
 
+  void visitAsRecruiter() {
+    final recruiter = User(
+      id: '000',
+      name: 'Recruiter',
+      email: 'recruiterzzz@gmail.com',
+      profilePicture: '',
+      banner: '',
+      followers: 0,
+    );
+    _currentUser.value = recruiter;
+  }
+
   Future<void> changeProfilePicture(User user, String url) async {
     try {
       final updatedUser = await _userService.update(

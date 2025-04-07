@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controllers/post_controller.dart';
@@ -8,8 +9,8 @@ import '../../models/user.dart';
 import '../../views/profile_screen.dart';
 
 class PostCard extends StatelessWidget {
-  final Post post;
   const PostCard({super.key, required this.post});
+  final Post post;
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +39,8 @@ class PostCard extends StatelessWidget {
         child: SizedBox(
           height: 300,
           width: 300,
-          child: Image.network(
-            post.imgPath,
+          child: Image.file(
+            File(post.imgPath),
             fit: BoxFit.cover,
           ),
         ),
@@ -82,7 +83,7 @@ class PostCard extends StatelessWidget {
   }
 
   Widget _buildProfilePlaceholder() {
-    return Container(
+    return SizedBox(
       width: 250,
       height: 40,
       child: Row(
@@ -110,8 +111,8 @@ class PostCard extends StatelessWidget {
   Widget _buildProfilePicture(User user) {
     return ClipOval(
       child: user.profilePicture.isNotEmpty
-          ? Image.network(
-              user.profilePicture,
+          ? Image.file(
+              File(user.profilePicture),
               width: 40,
               height: 40,
               fit: BoxFit.cover,
@@ -146,11 +147,17 @@ class PostCard extends StatelessWidget {
       child: Obx(() {
         final isLiked = post.isLiked;
         return GestureDetector(
-          onTap: () => Get.find<PostController>().toggleLike(post.id!),
-          child: Icon(
-            isLiked ? Icons.favorite : Icons.favorite_outline,
-            size: 30,
-            color: isLiked ? Colors.red : Colors.blueGrey,
+          onTap: () => Get.find<PostController>().toggleLike(post),
+          child: Row(
+            children: [
+              Icon(
+                isLiked ? Icons.favorite : Icons.favorite_outline,
+                size: 30,
+                color: isLiked ? Colors.red : Colors.blueGrey,
+              ),
+              Text('${post.likes.length}',
+                  style: const TextStyle(color: Colors.white)),
+            ],
           ),
         );
       }),

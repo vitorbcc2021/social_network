@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,8 +29,8 @@ class FloatingProfileButton extends StatelessWidget {
             ),
             child: ClipOval(
               child: uc.currentUser!.profilePicture.isNotEmpty
-                  ? Image.network(
-                      uc.currentUser!.profilePicture,
+                  ? Image.file(
+                      File(uc.currentUser!.profilePicture),
                       width: 50,
                       height: 50,
                       fit: BoxFit.cover,

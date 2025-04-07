@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
@@ -45,7 +46,7 @@ class ProfilePicture extends StatelessWidget {
         ),
         child: ClipOval(
           child: user.profilePicture.isNotEmpty
-              ? Image.network(user.profilePicture, fit: BoxFit.cover)
+              ? Image.file(File(user.profilePicture), fit: BoxFit.cover)
               : _buildFallbackProfilePicture(),
         ),
       ),

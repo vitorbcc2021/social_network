@@ -3,7 +3,7 @@ import 'dart:convert';
 import '../models/post.dart';
 
 class PostService {
-  static const String _baseUrl = 'http://172.16.102.96:8080/post';
+  static const String _baseUrl = 'http://localhost:8080/post';
 
   Future<Post> addPost(Post post) async {
     final response = await http.post(
@@ -72,9 +72,10 @@ class PostService {
       Uri.parse('$_baseUrl/$id'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
+        'id': newPost.id,
         'authorId': newPost.authorId,
-        'imagePath': newPost.imgPath,
-        'likes': newPost.likes
+        'imgPath': newPost.imgPath,
+        'likes': newPost.likes,
       }),
     );
 

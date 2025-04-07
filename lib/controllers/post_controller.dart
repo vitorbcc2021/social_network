@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../models/post.dart';
 import '../models/user.dart';
@@ -61,36 +62,46 @@ class PostController extends GetxController with StateMixin<List<Post>> {
     }
   }
 
-  Future<void> toggleLike(String postId) async {
+  Future<void> toggleLike(Post post) async {
     try {
       final userController = Get.find<UserController>();
       final currentUser = userController.currentUser;
 
       if (currentUser == null) {
-        Get.snackbar('Atenção', 'Faça login para curtir posts');
+        Get.snackbar(
+          'Error',
+          'Make logout and login again to continue to like posts!',
+          colorText: Colors.red,
+        );
         return;
       }
 
-      final postIndex = allPosts.indexWhere((p) => p.id == postId);
-      if (postIndex == -1) return;
+      if (post.id == null) {
+        Get.snackbar(
+          'Error',
+          'Post id is null!',
+          colorText: Colors.red,
+        );
+        return;
+      }
 
-      final updatedPost = allPosts[postIndex].copyWith(
+      final updatedPost = post.copyWith(
         likes: () {
-          final List<String> newLikes = List.from(allPosts[postIndex].likes);
-          if (newLikes.contains(currentUser.id!)) {
-            newLikes.remove(currentUser.id!);
+          if (post.likes.contains(currentUser.id!)) {
+            post.likes.remove(currentUser.id!);
           } else {
-            newLikes.add(currentUser.id!);
+            post.likes.add(currentUser.id!);
           }
-          return newLikes;
+          return post.likes;
         }(),
       );
 
-      await _postService.update(postId, updatedPost);
-      allPosts[postIndex] = updatedPost;
+      await _postService.update(post.id!, updatedPost);
+      post = updatedPost;
       allPosts.refresh();
+      userPosts.refresh();
     } catch (e) {
-      Get.snackbar('Erro', 'Falha ao atualizar like');
+      Get.snackbar('Error', 'Failed to update like');
     }
   }
 }

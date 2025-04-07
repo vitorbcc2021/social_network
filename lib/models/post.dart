@@ -31,7 +31,7 @@ class Post extends GenericModel<Post> {
   }
 
   bool get isLiked {
-    final currentAuthorId = Get.find<UserController>().currentUser?.id;
+    final currentAuthorId = Get.find<UserController>().currentUser!.id;
     return currentAuthorId != null && likes.contains(currentAuthorId);
   }
 

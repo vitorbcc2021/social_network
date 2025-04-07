@@ -74,8 +74,8 @@ class ProfileBanner extends StatelessWidget {
               }
             : null,
         child: user.banner != ''
-            ? Image.network(
-                user.banner,
+            ? Image.file(
+                File(user.banner),
                 fit: BoxFit.cover,
               )
             : fallbackBannerContainer(),

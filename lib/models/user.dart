@@ -1,11 +1,11 @@
 import 'generic_model.dart';
 
 class User extends GenericModel<User> {
-  late String name;
-  late String email;
-  late String profilePicture;
-  late String banner;
-  late int followers;
+  late final String name;
+  late final String email;
+  late final String profilePicture;
+  late final String banner;
+  late final List<String> followers;
 
   User({
     super.id,
@@ -15,7 +15,7 @@ class User extends GenericModel<User> {
     banner,
     followers,
   }) {
-    this.followers = followers ?? 0;
+    this.followers = followers ?? [];
     this.profilePicture = profilePicture ?? '';
     this.banner = banner ?? '';
   }
@@ -27,7 +27,7 @@ class User extends GenericModel<User> {
     String? email,
     String? profilePicture,
     String? banner,
-    int? followers,
+    List<String>? followers,
   }) {
     return User(
       id: id ?? this.id,
@@ -46,7 +46,7 @@ class User extends GenericModel<User> {
       email: json['email'],
       profilePicture: json['profilePicture'] ?? '',
       banner: json['banner'] ?? '',
-      followers: json['followers'] ?? 0,
+      followers: List.from(json['followers']),
     );
   }
 

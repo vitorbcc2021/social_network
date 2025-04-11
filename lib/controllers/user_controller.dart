@@ -13,6 +13,12 @@ class UserController extends GetxController {
 
   User? get currentUser => _currentUser.value;
 
+  final RxMap<String, bool> _followingStatus = <String, bool>{}.obs;
+  final RxInt _followerCount = 0.obs;
+
+  bool isFollowing(String userId) => _followingStatus[userId] ?? false;
+  int get followerCount => _followerCount.value;
+
   Future<User?> getUserById(String userId) async {
     try {
       return await _userService.getById(userId);
@@ -41,7 +47,7 @@ class UserController extends GetxController {
       email: 'recruiterzzz@gmail.com',
       profilePicture: '',
       banner: '',
-      followers: 0,
+      followers: [],
     );
     _currentUser.value = recruiter;
   }
@@ -111,5 +117,35 @@ class UserController extends GetxController {
       Get.snackbar('Erro', e.toString(), colorText: Colors.red);
       return false;
     }
+  }
+
+  Future<void> toggleFollow(User otherUser) async {
+    try {
+      final currentUserId = currentUser?.id;
+      if (currentUserId == null) return;
+
+      final newStatus = !isFollowing(otherUser.id!);
+      _followingStatus[otherUser.id!] = newStatus;
+      _followerCount.value =
+          newStatus ? _followerCount.value + 1 : _followerCount.value - 1;
+
+      await _userService.toggleFollow(
+        currentUserId: currentUserId,
+        otherUserId: otherUser.id!,
+        follow: newStatus,
+      );
+    } catch (e) {
+      _followingStatus[otherUser.id!] = !isFollowing(otherUser.id!);
+      _followerCount.value = isFollowing(otherUser.id!)
+          ? _followerCount.value + 1
+          : _followerCount.value - 1;
+
+      Get.snackbar('Erro', 'Falha ao atualizar: $e', colorText: Colors.red);
+    }
+  }
+
+  void loadUserFollowers(User user) {
+    _followerCount.value = user.followers.length;
+    _followingStatus[user.id!] = user.followers.contains(currentUser?.id);
   }
 }

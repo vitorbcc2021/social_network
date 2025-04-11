@@ -4,9 +4,9 @@ import '../controllers/user_controller.dart';
 import 'generic_model.dart';
 
 class Post extends GenericModel<Post> {
-  String authorId;
-  String imgPath;
-  List<String> likes;
+  final String authorId;
+  final String imgPath;
+  final List<String> likes;
 
   Post({
     super.id,

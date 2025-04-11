@@ -100,30 +100,30 @@ class ProfileScreen extends StatelessWidget {
   }
 
   Widget _buildFollowersSection(User user) {
+    final uc = Get.find<UserController>();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      uc.loadUserFollowers(user);
+    });
+
     return Stack(
       children: [
-        Container(
-          alignment: Alignment.center,
-          margin: const EdgeInsets.symmetric(horizontal: 43, vertical: 8),
-          decoration: BoxDecoration(
-            color: Colors.blueGrey[800],
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: const SizedBox(height: 60, width: 100),
-        ),
-        Container(
-          margin: const EdgeInsets.fromLTRB(55, 25, 0, 0),
-          child: Text(
-            'Followers: ${user.followers}',
-            style: const TextStyle(color: Colors.white, fontSize: 17),
-          ),
-        ),
+        // ... (seu container de fundo existente)
+        Obx(() => Container(
+              margin: const EdgeInsets.fromLTRB(55, 25, 0, 0),
+              child: Text(
+                'Followers: ${uc.followerCount}',
+                style: const TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            )),
         Row(
           children: [
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(right: 35),
-                child: otherUserId != null ? const FollowButton() : Container(),
+                child: otherUserId != null
+                    ? FollowButton(user: user)
+                    : Container(),
               ),
             ),
           ],

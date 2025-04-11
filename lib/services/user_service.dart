@@ -13,6 +13,7 @@ class UserService {
         'name': name,
         'email': email,
         'password': password,
+        'followers': []
       }),
     );
 
@@ -99,5 +100,21 @@ class UserService {
     if (response.statusCode != 200) {
       throw Exception('Failed to delete user: ${response.statusCode}');
     }
+  }
+
+  Future<void> toggleFollow({
+    required String currentUserId,
+    required String otherUserId,
+    required bool follow,
+  }) async {
+    final url = follow
+        ? '$_baseUrl/users/$otherUserId/follow'
+        : '$_baseUrl/users/$otherUserId/unfollow';
+
+    await http.post(
+      Uri.parse(url),
+      body: jsonEncode({'followerId': currentUserId}),
+      headers: {'Content-Type': 'application/json'},
+    );
   }
 }

@@ -1,18 +1,24 @@
-# Picshare
-## A Flutter social network prototype for learning reasons
+# Picshare  
+## My Flutter Social Network  
 
 Hello, world!  
-I'm Vitor Allace, i'm a Computer Science student from IFGOIANO - Morrinhos, and this is Picshare, my flutter social network project that ive developed only for learning reasons!
+I'm Vitor Allace, a Computer Science student from IFGOIANO - Morrinhos, and this is Picshare, my Flutter social network project!  
 
-### How to run?
-This code was made using `Flutter 3.24.3` and `JDK 23`.  
-All the application was implemented and tested using Windows 10 desktop mode.  
-Linux users needs to install the dependencies:
-  ```
-    sudo apt install sqlite3 libsqlite3-dev
-  ```
-Obs: its still incomplete on linux, file_picker is not working for some reason...
-  
-  `Note 1: this project is still in development, this isnt the final version of Picshare! Everything here, including the application name, can be changed along the development time`  
+## 📱 Project Overview  
+Picshare is a social media application where users can share photos, interact with posts, and connect with friends. The app features a clean UI and focuses on visual content sharing.
 
-  `Note 2: every single picture here, isn't mine, they are used here just for test reasons and is not planned to go for the final version`
+## 📥 How to Run?  
+1. Ensure you have Flutter, Java 23, and PostgreSQL installed and configured on your machine
+2. Clone, configure, and run the [Java Spring Restful API](https://github.com/vitorbcc2021/socialnetwork_api)
+3. In the terminal, navigate to the root folder of the project and run:  
+   ```bash
+   flutter pub get
+   ```
+   this command will download all the necessary dependencies to run the application!
+4. Run the application in desktop mode, this application is currently not working on web mode or mobile.
+
+
+
+## ⚠️ IMPORTANT NOTES
+  `Note 1: this project is still not completed, this isnt the final version of Picshare! Everything here, including the application name, can be changed`  
+  `Note 2: The initial idea was to deploy this application, but i cannot find a way to deploy the Java Spring Restful API for free. So the entire application has to be made to run in desktop mode`

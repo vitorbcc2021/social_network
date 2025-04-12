@@ -19,6 +19,8 @@ class FloatingProfileButton extends StatelessWidget {
         left: 7.0,
         child: GestureDetector(
           onTap: () {
+            final uc = Get.find<UserController>();
+            uc.resetFollowerState(); // 👈 Reseta antes de navegar
             Get.off(() => const ProfileScreen());
           },
           child: Container(

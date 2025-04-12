@@ -63,6 +63,12 @@ class PostController extends GetxController with StateMixin<List<Post>> {
   }
 
   Future<void> toggleLike(Post post) async {
+    final uc = Get.find<UserController>();
+    if (uc.currentUser!.email == 'recruiterzzz@gmail.com') {
+      Get.snackbar('Failed', 'Recruiters cannot like posts');
+      return;
+    }
+
     try {
       final userController = Get.find<UserController>();
       final currentUser = userController.currentUser;

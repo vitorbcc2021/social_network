@@ -46,7 +46,7 @@ class User extends GenericModel<User> {
       email: json['email'],
       profilePicture: json['profilePicture'] ?? '',
       banner: json['banner'] ?? '',
-      followers: List.from(json['followers']),
+      followers: List<String>.from(json['followers']),
     );
   }
 

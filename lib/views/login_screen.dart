@@ -199,8 +199,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          uc.visitAsRecruiter();
-                          Get.to(() => const HomePage());
+                          Get.defaultDialog(
+                            title: 'HELLO!',
+                            middleText:
+                                'Recruiter is a limited and quick way to take a look in the application.\nRecruiters cannot follow other users, create posts, like posts, change the profile picture or change banner. It\'s just a simple implementation! ;)',
+                            textConfirm: 'OK',
+                            confirmTextColor: Colors.white,
+                            onConfirm: () {
+                              uc.visitAsRecruiter();
+                              Get.to(() => const HomePage());
+                            },
+                          );
                         },
                         child: const Padding(
                           padding: EdgeInsets.all(12.0),

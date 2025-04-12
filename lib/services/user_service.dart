@@ -102,19 +102,21 @@ class UserService {
     }
   }
 
-  Future<void> toggleFollow({
-    required String currentUserId,
-    required String otherUserId,
-    required bool follow,
-  }) async {
-    final url = follow
-        ? '$_baseUrl/users/$otherUserId/follow'
-        : '$_baseUrl/users/$otherUserId/unfollow';
+  Future<void> toggleFollow(
+      {required String currentUserId,
+      required String otherUserId,
+      required bool follow}) async {
+    final endpoint = follow ? 'follow' : 'unfollow';
+    final url = '$_baseUrl/$otherUserId/$endpoint';
 
-    await http.post(
+    final response = await http.post(
       Uri.parse(url),
-      body: jsonEncode({'followerId': currentUserId}),
       headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'followerId': currentUserId}),
     );
+
+    if (response.statusCode != 200) {
+      throw Exception('Falha ao ${follow ? "seguir" : "deixar de seguir"}');
+    }
   }
 }

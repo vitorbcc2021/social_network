@@ -47,7 +47,7 @@ class UserController extends GetxController {
       email: 'recruiterzzz@gmail.com',
       profilePicture: '',
       banner: '',
-      followers: [],
+      followers: List<String>.from([]),
     );
     _currentUser.value = recruiter;
   }
@@ -121,30 +121,42 @@ class UserController extends GetxController {
 
   Future<void> toggleFollow(User otherUser) async {
     try {
-      final currentUserId = currentUser?.id;
-      if (currentUserId == null) return;
+      final currentUser = this.currentUser;
+      if (currentUser == null) return;
 
       final newStatus = !isFollowing(otherUser.id!);
+
       _followingStatus[otherUser.id!] = newStatus;
-      _followerCount.value =
-          newStatus ? _followerCount.value + 1 : _followerCount.value - 1;
+      _followerCount.value += newStatus ? 1 : -1;
 
       await _userService.toggleFollow(
-        currentUserId: currentUserId,
+        currentUserId: currentUser.id!,
         otherUserId: otherUser.id!,
         follow: newStatus,
       );
+
+      final updatedUser = await _userService.getById(otherUser.id!);
+      _followerCount.value = updatedUser.followers.length;
+      _followingStatus[otherUser.id!] =
+          updatedUser.followers.contains(currentUser.id);
     } catch (e) {
       _followingStatus[otherUser.id!] = !isFollowing(otherUser.id!);
-      _followerCount.value = isFollowing(otherUser.id!)
-          ? _followerCount.value + 1
-          : _followerCount.value - 1;
-
-      Get.snackbar('Erro', 'Falha ao atualizar: $e', colorText: Colors.red);
+      _followerCount.value += isFollowing(otherUser.id!) ? 1 : -1;
+      Get.snackbar('Erro', e.toString());
     }
   }
 
-  void loadUserFollowers(User user) {
+  void loadUserProfile(User user) {
+    _followerCount.value = user.followers.length;
+    _followingStatus[user.id!] = user.followers.contains(currentUser?.id);
+  }
+
+  void resetFollowerState() {
+    _followerCount.value = 0;
+    _followingStatus.clear();
+  }
+
+  void loadFollowersForUser(User user) {
     _followerCount.value = user.followers.length;
     _followingStatus[user.id!] = user.followers.contains(currentUser?.id);
   }

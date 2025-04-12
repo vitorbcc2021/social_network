@@ -27,6 +27,7 @@ class ProfileScreen extends StatelessWidget {
             : Future.value(uc.currentUser),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
+            uc.resetFollowerState();
             return const Center(child: CircularProgressIndicator());
           }
 
@@ -51,7 +52,9 @@ class ProfileScreen extends StatelessWidget {
                         icon: const Icon(Icons.arrow_back, color: Colors.white),
                         onPressed: () {
                           final pc = Get.find<PostController>();
+                          final uc = Get.find<UserController>();
                           pc.userPosts.clear();
+                          uc.resetFollowerState();
                           Get.off(() => const HomePage());
                         },
                       ),
@@ -87,14 +90,14 @@ class ProfileScreen extends StatelessWidget {
             style: const TextStyle(fontSize: 30, color: Colors.white),
           ),
         ),
-        if (otherUserId == null)
-          GestureDetector(
-            onTap: () => print('editando o nome'),
-            child: Container(
-              padding: const EdgeInsets.only(top: 3),
-              child: const Icon(Icons.edit_square, color: Colors.white),
-            ),
-          ),
+        // if (otherUserId == null)
+        //   GestureDetector(
+        //     onTap: () => print('editando o nome'),
+        //     child: Container(
+        //       padding: const EdgeInsets.only(top: 3),
+        //       child: const Icon(Icons.edit_square, color: Colors.white),
+        //     ),
+        //   ),
       ],
     );
   }
@@ -102,32 +105,45 @@ class ProfileScreen extends StatelessWidget {
   Widget _buildFollowersSection(User user) {
     final uc = Get.find<UserController>();
 
+    // Carrega os seguidores quando o widget é construído
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      uc.loadUserFollowers(user);
+      uc.loadFollowersForUser(user);
     });
 
     return Stack(
       children: [
-        // ... (seu container de fundo existente)
-        Obx(() => Container(
-              margin: const EdgeInsets.fromLTRB(55, 25, 0, 0),
-              child: Text(
-                'Followers: ${uc.followerCount}',
-                style: const TextStyle(color: Colors.white, fontSize: 17),
-              ),
-            )),
-        Row(
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(right: 35),
-                child: otherUserId != null
-                    ? FollowButton(user: user)
-                    : Container(),
-              ),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 43, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.blueGrey[800],
+            borderRadius: BorderRadius.circular(16),
+          ),
+          height: 60,
+        ),
+        Positioned.fill(
+          child: Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 60),
+                  child: Text(
+                    'Followers: ${uc.followerCount}',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                if (otherUserId != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20),
+                    child: FollowButton(user: user),
+                  ),
+              ],
             ),
-          ],
-        )
+          ),
+        ),
       ],
     );
   }

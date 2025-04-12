@@ -16,22 +16,18 @@ class FollowButton extends StatelessWidget {
       final isFollowing = uc.isFollowing(user.id!);
 
       return Container(
-        height: 40,
-        width: 90,
-        margin: const EdgeInsets.fromLTRB(220, 18, 20, 0),
-        decoration: BoxDecoration(
-          color: isFollowing ? Colors.grey : Colors.blue[700],
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: TextButton(
+        margin: const EdgeInsets.only(right: 40),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: isFollowing ? Colors.grey : Colors.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
           onPressed: () => uc.toggleFollow(user),
           child: Text(
             isFollowing ? 'Following' : '+ Follow',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-            ),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );

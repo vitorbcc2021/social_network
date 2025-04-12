@@ -167,6 +167,9 @@ class PostCard extends StatelessWidget {
   void _navigateToProfile() {
     final uc = Get.find<UserController>();
     final isCurrentUser = uc.currentUser?.id == post.authorId;
+
+    uc.resetFollowerState();
+
     Get.to(() => ProfileScreen(
           otherUserId: isCurrentUser ? null : post.authorId,
         ));

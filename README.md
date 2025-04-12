@@ -20,5 +20,5 @@ Picshare is a social media application where users can share photos, interact wi
 
 
 ## ⚠️ IMPORTANT NOTES
-  `Note 1:` this project is still not completed, this isnt the final version of Picshare! Everything here, including the application name, can be changed 
+  `Note 1:` this project is still not completed, this isnt the final version of Picshare! Everything here, including the application name, can be changed  
   `Note 2:` The initial idea was to deploy this application, but i cannot find a way to deploy the Java Spring Restful API for free. So the entire application has to be made to run in desktop mode
